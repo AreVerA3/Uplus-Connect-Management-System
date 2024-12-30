@@ -50,12 +50,36 @@ body {
     color: red;
 }
 
+
+
 /* Advertisement styles */
 .advertisement {
     background-color: #f2f2f2;
     padding: 10px;
     border: 1px solid #ccc;
     margin-top: 20px;
+}
+
+.image-gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 250px; /* Adjust the height as needed */
+}
+
+.gallery-image {
+    display: none; /* Hide all images initially */
+    cursor: pointer; 
+}
+
+.image-gallery img{
+    width: 500px;
+    height: 250px; 
+    object-fit: cover; 
+}
+
+.gallery-image:first-child {
+    display: block; /* Show the first image initially */
 }
 
 /* Packages styles */
@@ -70,10 +94,17 @@ body {
     background-color: #f2f2f2;
     padding: 20px;
     border: 1px solid #ccc;
-    width: 150px;
+    width: 200px; 
+    height: auto; 
     margin: 10px;
     text-align: center;
     border-radius: 4px;
+}
+
+.package img {
+    width: 200px;
+    height: 200px; 
+    object-fit: cover; 
 }
 
 /* Responsive design */
