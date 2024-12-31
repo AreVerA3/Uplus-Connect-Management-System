@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Sign-Up</title>
+    <link rel="stylesheet" href="SignUp.css">
+    <script src="SignUp.js" defer></script>
+</head>
+<body>
+  <h1>U-Plus Tuition Center</h1>
+  <form method="post" action="Student_SignUp.php" enctype="multipart/form-data">
+
+    <!--Student Information-->
+    <fieldset>
+        <legend>Student Information</legend>
+        <div>
+            <label for="fullname">Full Name</label>
+            <input type="text" name="fullname" id="fullname" autofocus required>
+        </div>
+        <div>
+            <label for="telephone">Telephone</label>
+            <input type="tel" name="telephone" id="telephone" placeholder="0101234567" pattern="\{0\}[0-9]{2}[0-9]{7,8}" required/>
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
+        </div>
+        <div>
+            <label for="m">Gender</label>
+            <input type="radio" name="gender" value="Male" id="m"> Male
+            <input type="radio" name="gender" value="Female" id="f"> Female
+        </div>
+        <div>
+            <label for="birthday">Birthday</label>
+            <input type="date" name="birthday" id="birthday"/>
+        </div>
+        <div>
+            <label for="IC">IC Number (without '-') </label>
+            <input type="number" name="IC" id="IC" pattern="\d*" maxlength="12" required>
+        </div>
+        <div>
+            <label for="age">Age</label>
+            <input type="number" name="age" id="age" min="6" max="18"/>
+        </div>
+        <div>
+            <label for="school-name">School Name</label>
+            <input type="text" name="school-name" id="school-name" required>
+        </div>
+        <div>
+            <label for="school-type">School Type</label>
+            <select id="school-type" name="school-type" required onchange="updateSchoolGrades()">
+                <option value="">Select School Type</option>
+                <option value="SJKC">SJKC</option>
+                <option value="SK">SK</option>
+                <option value="SMK">SMK</option>
+            </select>
+        </div>
+        <div>
+            <label for="school-grade">School Grade</label>
+            <select id="school-grade" name="school-grade" required>
+                <option value="">Select School Grade</option>
+                <!--Options will be conducted by Javascript-->
+            </select>    
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required>
+        </div>
+    </fieldset>
+
+    <!--Address Information-->
+    <fieldset>
+        <legend>Address</legend>
+        <div>
+            <label for="house-no">Apt./House Number</label>
+            <input type="text" name="house-no" id="house-no">
+        </div>
+        <div>
+            <label for="street">Street</label>
+            <input type="text" name="street" id="street">
+        </div>
+        <div>
+            <label for="city">City</label>
+            <input type="text" name="city" id="city">
+        </div>
+        <div>
+            <label for="state">State</label>
+            <input list="states" name="state" id="state" placeholder="Select or type your state">
+            <datalist id="states">
+                <option value="Sarawak">
+                <option value="Sabah">
+                <option value="Selangor">
+                <option value="Negeri Sembilan">
+                <option value="Pulau Pinang">
+                <option value="Perak">
+                <option value="Perlis">
+                <option value="Pahang">
+                <option value="Johor">
+                <option value="Kedah">
+                <option value="Kelantan">
+                <option value="Kuala Lumpur">
+                <option value="Labuan">
+                <option value="Putrajaya">
+                <option value="Melaka">
+                <option value="Terengganu">
+            </datalist>
+        </div>
+        <div>
+            <label for="country">Country</label>
+            <select name="country" id="country">
+                <option value="Indonesia">Indonesia</option>
+                <option value="Malaysia">Malaysia</option>
+                <option value="Phillippines">Phillippines</option>
+                <option value="Singapore">Singapore</option>
+                <option value="Thailand">Thailand</option>
+            </select>
+        </div>
+        <div>
+            <label for="postcode">Postcode</label>
+            <input type="text" name="postcode" id="postcode" pattern="[0-9]{5}">
+        </div>                
+    </fieldset>
+
+    <!--First Guardian Information-->
+    <fieldset>
+        <legend>First Guardian Information</legend>
+        <div>
+            <label for="guardian-name">Guardian Name</label>
+            <input type="text" name="guardian-name" id="guardian-name" required>
+        </div>
+        <div>
+            <label for="relationship">Relationship</label>
+            <input type="text" name="relationship" id="relationship" required>
+        </div>
+        <div>
+            <label for="occupation">Occupation</label>
+            <input type="text" name="occupation" id="occupation">
+        </div>
+        <div>
+            <label for="guardian-contact">Contact</label>
+            <input type="tel" name="guardian-contact" id="guardian-contact" placeholder="0101234567" pattern="\{0\}[0-9]{2}[0-9]{7,8}" required>
+        </div>
+    </fieldset>
+
+    <div>
+        <textarea cols="65" rows="3" style="margin:5px 0 0 2px">TERMS AND CONDITIONS</textarea>
+    </div>
+    <div>
+        <input type="checkbox" name="accept" id="accept">
+        <label for="accept" style="width:90%">I accept the above Terms and Conditions.</label>
+    </div>
+    <input type="submit" name="submit" value="Register" style="margin-left:3px">
+    <input type="reset" name="reset" value="Clear">
+  </form>
+
+  <br>
+  <a href="Main Page.html">Back to Main Page</a>
+</body>
+</html>

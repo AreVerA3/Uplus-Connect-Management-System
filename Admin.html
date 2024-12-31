@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="Admin.css">
+</head>
+<body>
+    <div class="header">
+    </div>
+    <div class="dashboard">
+        <div class="sidebar">
+            <div class="profile">
+                <div class="profile-picture"></div>
+                <div class="admin-name">Admin</div>
+            </div>
+            <nav class="menu">
+                <button id="tuition-package" class="menu-item" onclick="showMainDisplay('package', this)">Tuition Package</button>
+                <button id="teacher-config" class="menu-item" onclick="showMainDisplay('teacher', this)">Teacher Configuration</button>
+                <button id="student-config" class="menu-item" onclick="showMainDisplay('student', this)">Student Configuration</button>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="logout" onclick="location.href='Main Page.html';">Logout</button>
+            </div>
+        </div>
+        <div class="main-display" id="main-display">
+            <h2>Tuition Packages</h2>
+            <form action="adminpackage.php" method="POST" class="package-form">
+                <label for="package-name">Package Name:</label>
+                <input type="text" id="package-name" name="package_name" required>
+
+                <label for="package-type">Type:</label>
+                <input type="text" id="package-type" name="package_type" required>
+
+                <label for="package-category">Category:</label>
+                <input type="text" id="package-category" name="package_category" required>
+
+                <label for="package-price">Price:</label>
+                <input type="number" id="package-price" name="package_price" required>
+
+                <button type="submit" name="action" value="add">Add Package</button>
+            </form>
+
+            <div class="package-list">
+                <h3>Existing Packages</h3>
+                <!-- Packages from the database will be displayed here -->
+                <?php include 'display_packages.php'; ?>
+            </div>
+        </div>
+    </div>
+    <script src="Admin.js" defer></script>
+</body>
+</html>

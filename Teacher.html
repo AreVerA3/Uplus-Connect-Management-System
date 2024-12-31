@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student</title>
+    <link rel="stylesheet" href="Teacher.css">
+</head>
+<body>
+    <div class="header">
+    </div>
+    <div class="dashboard">
+        <div class="sidebar">
+            <div class="profile">
+                <div class="profile-picture"></div>
+                <div class="teacher-name">Teacher</div>
+            </div>
+            <nav class="menu">
+                <button id="student-config" class="menu-item" onclick="showMainDisplay('learningmaterial', this)">Learning Materials</button>
+                <button id="teacher-config" class="menu-item" onclick="showMainDisplay('studentdata', this)">Student Management</button>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="logout" onclick="location.href='Main Private.html';">Main Page</button>
+                <button class="logout" onclick="location.href='Main Page.html';">Logout</button>
+            </div>
+        </div>
+        <div class="main-display" id="main-display">
+
+        </div>
+    </div>
+    <script src="Teacher.js" defer></script>
+</body>
+</html>

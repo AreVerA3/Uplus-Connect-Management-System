@@ -1,0 +1,161 @@
+/* General body styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Dashboard container */
+.dashboard {
+    display: flex;
+    height: 100vh;
+}
+
+/* Header styles */
+.header {
+    background-color: #1E3A8A;
+    color: white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.home-icon {
+    cursor: pointer;
+    font-size: 24px;
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 250px;
+    background-color: #1E3A8A;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+}
+
+/* Profile section */
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-picture {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: white;
+    margin-bottom: 10px;
+}
+
+.admin-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Menu styles */
+.menu {
+    width: 100%;
+    margin-bottom: auto;
+}
+
+.menu-item {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    color: white;
+    text-align: left;
+    background-color: #3B82F6;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    background-color: #2563EB;
+}
+
+/* Sidebar footer with buttons */
+.sidebar-footer {
+    width: 100%;
+    margin-top: auto;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.main-page, .logout {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #4447ef;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.main-page:hover {
+    background-color: #046e3d;
+}
+
+.logout:hover {
+    background-color: #DC2626;
+}
+
+/* Main display area */
+.main-display {
+    flex-grow: 1;
+    background-color: #F9FAFB;
+    padding: 20px;
+    overflow: auto;
+}
+
+h2, h3 {
+    color: #333;
+}
+
+.package-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.package-form label {
+    font-weight: bold;
+}
+
+.package-form input {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.package-form button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.package-form button:hover {
+    background-color: #0056b3;
+}
+
+.package-list {
+    margin-top: 20px;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.menu-item.active {
+    background-color: #007bff; /* Change to your desired active color */
+    color: white;
+}
+
