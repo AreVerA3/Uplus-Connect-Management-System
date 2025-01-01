@@ -16,3 +16,4 @@ document.addEventListener('DOMContentLoaded', function() {
         img.addEventListener('click', showNextImage);
     });
 });
+
