@@ -7,27 +7,33 @@ body {
 /* Dashboard container */
 .dashboard {
     display: flex;
-    height: 100vh;
+    height: 100vh; /* Full viewport height */
+    width: 100% ;
+    flex-direction: row; /* Sidebar + Main display */
+    width: 100vw; /* Full viewport width */
+    margin: 0 auto; /* Center the dashboard */
+}
+
+
+/* Header styles */
+.header {
+    background-color: #1E3A8A;
+    color: white;
+    padding: 10px;
+    text-align: center;
 }
 
 /* Sidebar styles */
 .sidebar {
-    width: 250px;
+    width: 250px; /* Default width */
+    min-width: 250px;
+    max-width: 300px;
     background-color: #1E3A8A;
     color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    position: relative;
-}
-
-/* Profile section */
-.profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
 }
 
 .profile-picture {
@@ -43,60 +49,311 @@ body {
     font-weight: bold;
 }
 
-/* Menu styles */
 .menu {
     width: 100%;
-    margin-bottom: auto;
+    margin-top: 20px;
 }
 
 .menu-item {
     width: 100%;
     padding: 10px;
     margin: 5px 0;
-    color: white;
-    text-align: left;
     background-color: #3B82F6;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    text-align: left;
+    color: white;
 }
 
 .menu-item:hover {
     background-color: #2563EB;
 }
 
-/* Sidebar footer with buttons */
+.menu-item.active {
+    background-color: purple;
+}
+
 .sidebar-footer {
-    width: 100%;
     margin-top: auto;
-    padding: 10px 0;
+    width: 100%;
     text-align: center;
 }
 
-.main-page, .logout {
+.logout {
     width: 100%;
     padding: 10px;
     margin: 5px 0;
-    background-color: #EF4444;
+    background-color: #4447ef;
     border: none;
-    color: white;
     border-radius: 5px;
+    color: white;
     cursor: pointer;
-}
-
-.main-page:hover {
-    background-color: #046e3d;
 }
 
 .logout:hover {
     background-color: #DC2626;
 }
 
-
-/* Main display area */
 .main-display {
-    flex-grow: 1;
+    flex-grow: 1; /* Makes the main-display expand to fill the remaining space */
     background-color: #F9FAFB;
     padding: 20px;
-    overflow: auto;
+    overflow-y: auto;
+    width: calc(100% - 250px); /* Adjusts based on sidebar width */
+    margin: 0;
+    box-sizing: border-box;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.teacher-data-form input,
+.teacher-data-form select,
+.teacher-table,
+table { /* Apply to all tables */
+    box-sizing: border-box;
+}
+
+/* Announcements Section */
+.announcement-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.announcement-form input, .announcement-form textarea {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.announcement-form button {
+    padding: 10px 15px;
+    background-color: #1E3A8A;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.announcement-form button:hover {
+    background-color: green;
+}
+
+/* Announcements Table */
+.announcements-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.announcements-table th, .announcements-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.announcements-table th {
+    background-color: #1E3A8A;
+    color: white;
+}
+
+.announcements-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.hidden {
+    display: none;
+}
+
+.main-display {
+    
+    margin: 0 auto;
+    padding: 2em;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 3px 10px -2px rgba(0, 0, 0, 0.2);
+}
+
+#announcements {
+    margin-top: 1em;
+    background-color: #f9f9f9;
+    padding: 1.5em;
+    border-radius: 4px;
+    box-shadow: 0 3px 10px -2px rgba(0, 0, 0, 0.1);
+}
+
+fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+legend {
+    font-size: 1.2em;
+    color: #f0a500;
+    margin-bottom: 1em;
+}
+
+form.announcement-form div {
+    margin-bottom: 1em;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5em;
+    color: #333;
+}
+
+input[type="text"], input[type="date"], textarea {
+    width: 100%;
+    padding: 1em;
+    line-height: 1.4;
+    background-color: #f9f9f9;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+    transition: all 0.35s ease-in-out;
+}
+
+textarea {
+    height: 100px;
+    resize: none;
+}
+
+input[type="text"]:focus, input[type="date"]:focus, textarea:focus {
+    outline: none;
+    border-color: #f0a500;
+}
+
+button {
+    padding: 0.8em 1.6em;
+    background-color: #f0a500;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #bd8200;
+}
+
+/* Student Data Form */
+.student-data-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.student-data-form input, .student-data-form select {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.student-data-form button {
+    padding: 10px 15px;
+    background-color: #1E3A8A;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.student-data-form button:hover {
+    background-color: green;
+}
+
+/* Student Data Table */
+.students-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.students-table th, .students-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.students-table th {
+    background-color: #1E3A8A;
+    color: white;
+}
+
+.students-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.students-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Materials Upload Form */
+.material-upload-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.material-upload-form input, .material-upload-form select {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.material-upload-form button {
+    padding: 10px 15px;
+    background-color: #1E3A8A;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.material-upload-form button:hover {
+    background-color: green;
+}
+
+/* Materials Table */
+.materials-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.materials-table th, .materials-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.materials-table th {
+    background-color: #1E3A8A;
+    color: white;
+}
+
+.materials-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.materials-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.materials-table td a {
+    color: #3B82F6;
+    text-decoration: none;
+}
+
+.materials-table td a:hover {
+    text-decoration: underline;
 }
