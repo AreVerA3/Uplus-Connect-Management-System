@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student</title>
+    <title>Teacher Dashboard</title>
     <link rel="stylesheet" href="Teacher.css">
 </head>
 <body>
-    <div class="header">
-    </div>
     <div class="dashboard">
         <div class="sidebar">
             <div class="profile">
@@ -16,16 +14,187 @@
                 <div class="teacher-name">Teacher</div>
             </div>
             <nav class="menu">
-                <button id="student-config" class="menu-item" onclick="showMainDisplay('learningmaterial', this)">Learning Materials</button>
-                <button id="teacher-config" class="menu-item" onclick="showMainDisplay('studentdata', this)">Student Management</button>
+                <button class="menu-item" onclick="showMainDisplay('announcements', this)">Homework Announcements</button>
+                <button class="menu-item" onclick="showMainDisplay('students', this)">Student Data Management</button>
+                <button class="menu-item" onclick="showMainDisplay('material', this)">Learning Material</button>
             </nav>
             <div class="sidebar-footer">
                 <button class="logout" onclick="location.href='Main Private.html';">Main Page</button>
                 <button class="logout" onclick="location.href='Main Page.html';">Logout</button>
             </div>
         </div>
-        <div class="main-display" id="main-display">
+        <div class="main-display">
+            <div id="announcements" class="hidden">
+                <fieldset>
+                <legend>Post Homework Announcement</legend>
+                <form class="announcement-form">
+                    <div>
+                        <label for="homework-title">Homework Title:</label>
+                        <input type="text" id="homework-title" placeholder="Enter homework title" required> 
+                    </div>
 
+                    <div>
+                        <label for="homework-deadline">Deadline:</label>
+                        <input type="date" id="homework-deadline" required>
+                    </div>
+                    
+                    <div>
+                        <label for="homework-elaboration">Elaboration:</label>
+                        <textarea id="homework-elaboration" rows="10" placeholder="Provide detailed information about the homework" required></textarea>
+                    </div>
+                    
+                    <button type="button" onclick="postAnnouncement()">Post Announcement</button>
+                    <button type="reset">Clear</button>
+                </form>
+                </fieldset>
+
+                <h3>Posted Announcements</h3>
+                <table id="announcements-table" class="announcements-table">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Title</th>
+                            <th>Posted Date</th>
+                            <th>Deadline</th>
+                            <th>Elaboration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="5">No announcements yet.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="students" class="hidden">
+                <fieldset>
+                <legend>Upload Grades & Attendance</legend>
+                <form class="student-data-form">
+                    <div>
+                        <label for="student-name">Student Name :</label>
+                        <input type="text" id="student-name" placeholder="Enter student name" required>
+                    </div>
+                    <div>
+                        <label for="education">School Level :</label>
+                        <select id="education" required>
+                            <option value="" disabled selected>Select School Level</option>
+                            <option value="sjkc">SJKC</option>
+                            <option value="sk">SK</option>
+                            <option value="secondary">Secondary</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="subject">Subject:</label>
+                        <select id="subject" required>
+                            <option value="" disabled selected>Select Subject</option>
+                            <option value="math">Mathematics</option>
+                            <option value="science">Science</option>
+                            <option value="english">English</option>
+                            <option value="history">History</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="grade">Grade:</label>
+                        <select id="grade" required>
+                            <option value="" disabled selected>Select Grade</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            <option value="FAILED">FAILED</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="attendance">Attendance:</label>
+                        <input type="text" id="attendance" placeholder="Enter Percentage of Attendance" required>
+                    </div>
+
+                    <button type="button" onclick="uploadStudentData()">Save</button>
+                    <button type="reset">Clear</button>
+                </form>
+                </fieldset>
+
+                <h3>Student Data Records</h3>
+                <table id="students-table" class="students-table">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Student Name</th>
+                            <th>Subject</th>
+                            <th>Grade</th>
+                            <th>Attendance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="5">No student data uploaded yet.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="material" class="hidden">
+                <fieldset>
+                    <legend>Upload Learning Material</legend>
+                    <form class="material-upload-form" enctype="multipart/form-data">
+                        <div>
+                            <label for="material-title">Title:</label>
+                            <input type="text" id="material-title" placeholder="Enter material title" required>
+                        </div>
+
+                        <div>
+                            <label for="material-file">Upload File (Image/PDF):</label>
+                            <input type="file" id="material-file" accept="image/*,application/pdf" required>
+                        </div>
+
+                        <div>
+                            <label for="education">School Level:</label>
+                            <select id="material-education" required>
+                                <option value="" disabled selected>Select School Level</option>
+                                <option value="sjkc">SJKC</option>
+                                <option value="sk">SK</option>
+                                <option value="secondary">Secondary</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="subject">Subject:</label>
+                            <select id="material-subject" required>
+                                <option value="" disabled selected>Select Subject</option>
+                                <option value="math">Mathematics</option>
+                                <option value="science">Science</option>
+                                <option value="english">English</option>
+                                <option value="history">History</option>
+                            </select>
+                        </div>
+
+                        <button type="button" onclick="uploadLearningMaterial()">Upload</button>
+                        <button type="reset">Clear</button>
+                    </form>
+                </fieldset>
+
+                <h3>Uploaded Learning Materials</h3>
+                <table id="materials-table" class="materials-table">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Title</th>
+                            <th>School Level</th>
+                            <th>Subject</th>
+                            <th>File</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="5">No materials uploaded yet.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <script src="Teacher.js" defer></script>
