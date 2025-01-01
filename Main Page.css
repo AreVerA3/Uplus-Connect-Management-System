@@ -1,3 +1,4 @@
+
 /* Reset some basic styles */
 body, h1, p {
     margin: 0;
@@ -131,4 +132,31 @@ body {
         width: 80%;
         margin-bottom: 10px;
     }
+}
+
+footer {
+    background-color: #f8f9fa;
+    padding: 40px 20px; /* Increase padding for spacing */
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+footer h2 {
+    color: #007bff;
+    margin-bottom: 20px; /* Increase spacing between title and content */
+    text-align: center;
+}
+
+footer p {
+    color: #333;
+    margin: 5px 0;
+    text-align: left; /* Align details to the left */
+    padding: 0 10px; /* Optional: Add some padding for a neater layout */
+}
+
+/* Optional: Add a wrapper for better control */
+footer .contact-details {
+    max-width: 600px; /* Limit the width of the details section */
+    margin: 0 auto; /* Center the contact details section */
+    text-align: left;
 }
