@@ -7,7 +7,10 @@ body {
 /* Dashboard container */
 .dashboard {
     display: flex;
-    height: 100vh;
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+    flex-direction: row; /* Sidebar + Main display */
+    margin: 0 auto; /* Center the dashboard */
 }
 
 /* Header styles */
@@ -15,33 +18,19 @@ body {
     background-color: #1E3A8A;
     color: white;
     padding: 10px;
-    display: flex;
-    align-items: center;
-}
-
-.home-icon {
-    cursor: pointer;
-    font-size: 24px;
+    text-align: center;
 }
 
 /* Sidebar styles */
 .sidebar {
-    width: 250px;
+    flex: 0 0 250px;
     background-color: #1E3A8A;
     color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    position: relative;
-}
-
-/* Profile section */
-.profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
+    box-sizing: border-box;
 }
 
 .profile-picture {
@@ -52,64 +41,217 @@ body {
     margin-bottom: 10px;
 }
 
-.admin-name {
+.teacher-name {
     font-size: 18px;
     font-weight: bold;
 }
 
-/* Menu styles */
 .menu {
     width: 100%;
-    margin-bottom: auto;
+    margin-top: 20px;
 }
 
 .menu-item {
     width: 100%;
     padding: 10px;
     margin: 5px 0;
-    color: white;
-    text-align: left;
     background-color: #3B82F6;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    text-align: left;
+    color: white;
 }
 
 .menu-item:hover {
     background-color: #2563EB;
 }
+ 
+.menu-item.active {
+    background-color: purple;
+}
 
-/* Sidebar footer with buttons */
 .sidebar-footer {
-    width: 100%;
     margin-top: auto;
-    padding: 10px 0;
+    width: 100%;
     text-align: center;
 }
 
-.main-page, .logout {
+.logout {
     width: 100%;
     padding: 10px;
     margin: 5px 0;
     background-color: #4447ef;
     border: none;
-    color: white;
     border-radius: 5px;
+    color: white;
     cursor: pointer;
-}
-
-.main-page:hover {
-    background-color: #046e3d;
 }
 
 .logout:hover {
     background-color: #DC2626;
 }
 
+
+.hidden {
+    display: none !important;
+}
+
+
+.main-display > div:not(.hidden) {
+    display: block;
+}
+
+
 /* Main display area */
 .main-display {
     flex-grow: 1;
     background-color: #F9FAFB;
     padding: 20px;
-    overflow: auto;
+    overflow-y: auto; 
+    width: calc(100% - 250px); /* Key for dynamic width */
+    margin: 0;
+    box-sizing: border-box;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+
+fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+legend {
+    font-size: 1.2em;
+    color: #f0a500;
+    margin-bottom: 1em;
+}
+
+
+label {
+    display: block;
+    margin-bottom: 0.5em;
+    color: #333;
+}
+
+input[type="text"], input[type="date"], textarea {
+    width: 100%;
+    padding: 1em;
+    line-height: 1.4;
+    background-color: #f9f9f9;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+    transition: all 0.35s ease-in-out;
+}
+
+textarea {
+    height: 100px;
+    resize: none;
+    width: 100%;
+}
+
+input[type="text"]:focus, input[type="date"]:focus, textarea:focus {
+    outline: none;
+    border-color: #f0a500;
+    width: 100%;
+}
+
+button {
+    padding: 0.8em 1.6em;
+    background-color: #f0a500;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #bd8200;
+}
+
+/* Tuition Slot& Teacher & Student Data Form */
+.tuition-slot-form,
+.teacher-data-form, 
+.student-data-form
+{
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    margin-bottom: 20px; 
+}
+
+.tuition-slot-form input,
+.tuition-slot-form select,
+.student-data-form input,
+.student-data-form select,
+.teacher-data-form input, 
+.teacher-data-form select {
+    padding: 15px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.tuition-slot-form button,
+.student-data-form button,
+.teacher-data-form button {
+    padding: 10px 15px;
+    background-color: #1E3A8A;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 10px; /* Space between buttons */
+    width: auto; /* Important: Let the button size itself */
+}
+
+.tuition-slot-form button:hover,
+.student-data-form button:hover,
+.teacher-data-form button:hover {
+    background-color: green;
+}
+
+/* Table styles */
+.tuition-table,
+.student-table,
+.teacher-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.teacher-data-form input,
+.teacher-data-form select,
+.teacher-table,
+table { /* Apply to all tables */
+    box-sizing: border-box;
+}
+
+.tuition-table th,
+.tuition-table td,
+.student-table th,
+.student-table td,
+.teacher-table th, 
+.teacher-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.tuition-table th,
+.student-table th,
+.teacher-table th {
+    background-color: #1E3A8A;
+    color: white;
+}
+
+.tuition-table tbody tr:nth-child(even),
+.student-table tbody tr:nth-child(even),
+.teacher-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
