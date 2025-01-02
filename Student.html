@@ -1,33 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student</title>
-    <link rel="stylesheet" href="Student.css">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="student.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
-    <div class="header">
-    </div>
     <div class="dashboard">
+        <!-- Sidebar -->
         <div class="sidebar">
             <div class="profile">
                 <div class="profile-picture"></div>
                 <div class="student-name">Student</div>
             </div>
             <nav class="menu">
-                <button id="tuition-package" class="menu-item" onclick="showMainDisplay('subscribedtuition', this)">Subscribed Tuition</button>
-                <button id="teacher-config" class="menu-item" onclick="showMainDisplay('payment', this)">Payment</button>
-                <button id="student-config" class="menu-item" onclick="showMainDisplay('learningmaterial', this)">Learning Materials</button>
+                <button class="menu-item active" onclick="showContent('learning-materials')">Learning Materials</button>
+                <button class="menu-item" onclick="showContent('payment')">Payment</button>
+                <button class="menu-item" onclick="showContent('subscribed-tuition')">Subscribed Tuition</button>
             </nav>
             <div class="sidebar-footer">
+                <button class="main-page" onclick="location.href='Main Private.html';">Main Page</button>
                 <button class="logout" onclick="location.href='Main Page.html';">Logout</button>
             </div>
         </div>
-        <div class="main-display" id="main-display">
 
+        <!-- Main Display Area -->
+        <div class="main-display">
+            <!-- Learning Materials -->
+            <div id="learning-materials" class="content active">
+                <h2>Learning Materials</h2>
+                <div class="material-item">
+                    <h3>Mathematics</h3>
+                    <p><strong>Teacher:</strong> Mr. John Doe</p>
+                    <img src="math_logo.png" alt="Math Logo" class="material-logo">
+                </div>
+                <div class="material-item">
+                    <h3>Biology</h3>
+                    <p><strong>Teacher:</strong> Dr. Sarah Lee</p>
+                    <img src="bio_logo.png" alt="Biology Logo" class="material-logo">
+                </div>
+                <div class="material-item">
+                    <h3>Physics</h3>
+                    <p><strong>Teacher:</strong> Prof. Emily Clark</p>
+                    <img src="physics_logo.png" alt="Physics Logo" class="material-logo">
+                </div>
+            </div>
+
+            <!-- Payment -->
+            <div id="payment" class="content">
+                <h2>Subjects Selection</h2>
+                <!-- Primary School Package -->
+                <button class="package-button" onclick="handlePackageSelection('primary-package')">Primary School Package</button>
+                <div id="primary-package" class="scroll-menu">
+                    <button class="subject-item" onclick="handlePackageSelection('sjkc')">SJKC</button>
+                    <button class="subject-item" onclick="handlePackageSelection('sk')">SK</button>
+                    <!-- SJKC -->
+                    <div id="sjkc" class="scroll-menu">
+                        <button class="subject-item" onclick="handleSubjectSelection('math')">Math (RM35)</button>
+                        <button class="subject-item" onclick="handleSubjectSelection('chinese')">Chinese Language (RM35)</button>
+                        <button class="subject-item" onclick="handleSubjectSelection('english')">English Language (RM35)</button>
+                        <button class="subject-item" onclick="handleSubjectSelection('bahasa1')">Bahasa Melayu 1 (RM35)</button>
+                        <button class="subject-item" onclick="handleSubjectSelection('bahasa2')">Bahasa Melayu 2 (RM35)</button>
+                        <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+                    </div>
+                    <!-- SK -->
+                    <div id="sk" class="scroll-menu">
+                        <button class="subject-item" onclick="handleSubjectSelection('math')">Math (RM35)</button>
+                        <button class="subject-item" onclick="handleSubjectSelection('english')">English Language (RM35)</button>
+                        <button class="subject-item" onclick="handleSubjectSelection('bahasa1')">Bahasa Melayu 1 (RM35)</button>
+                        <button class="subject-item" onclick="handleSubjectSelection('bahasa2')">Bahasa Melayu 2 (RM35)</button>
+                        <button class="subject-item" onclick="handleSubjectSelection('sains')">Sains (RM35)</button>
+                        <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+                    </div>
+                    <button class="subject-item" onclick="handlePackageSelection('all-subject-primary')">All Subjects (RM220)</button>
+                </div>
+
+                <!-- Secondary School Package -->
+                <button class="package-button" onclick="handlePackageSelection('secondary-package')">Secondary School Package</button>
+                <div id="secondary-package" class="scroll-menu">
+                    <button class="subject-item" onclick="handlePackageSelection('form1')">Form 1</button>
+                    <button class="subject-item" onclick="handlePackageSelection('form2')">Form 2</button>
+                    <button class="subject-item" onclick="handlePackageSelection('form3')">Form 3</button>
+                    <button class="subject-item" onclick="handlePackageSelection('form4')">Form 4</button>
+                    <button class="subject-item" onclick="handlePackageSelection('form5')">Form 5</button>
+                    <!-- Form 1 -->
+                    <div id="form1" class="scroll-menu">
+                        <button class="subject-item" onclick="handleSubjectSelection('english')">English (RM80)</button>
+                        <button class="subject-item" onclick="handleSubjectSelection('sains')">Sains (RM80)</button>
+                        <button class="subject-item" onclick="handleSubjectSelection('matematik')">Matematik (RM100)</button>
+                        <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+                    </div>
+                    <!-- Form 2 -->
+                    <div id="form2" class="scroll-menu">
+                        <button class="subject-item" onclick="handleSubjectSelection('english')">English (RM80)</button>
+                        <button class="subject-item" onclick="handleSubjectSelection('sains')">Sains (RM80)</button>
+                        <button class="subject-item" onclick="handleSubjectSelection('matematik')">Matematik (RM100)</button>
+                        <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+                    </div>
+                    <!-- Form 3 -->
+                    <div id="form3" class="scroll-menu">
+                        <button class="subject-item" onclick="handleSubjectSelection('english')">English (RM100)</button>
+                        <button class="subject-item" onclick="handleSubjectSelection('sains')">Sains (RM100)</button>
+                        <button class="subject-item" onclick="handleSubjectSelection('matematik')">Matematik (RM100)</button>
+                        <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+                    </div>
+                    <!-- Form 4 -->
+                    <div id="form4" class="scroll-menu">
+                        <button class="subject-item" onclick="handleSubjectSelection('english')">English (RM110)</button>
+                        <button class="subject-item" onclick="handleSubjectSelection('sains')">Sains (RM110)</button>
+                        <button class="subject-item" onclick="handleSubjectSelection('matematik')">Matematik (RM110)</button>
+                        <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+                    </div>
+                    <!-- Form 5 -->
+                    <div id="form5" class="scroll-menu">
+                        <button class="subject-item" onclick="handleSubjectSelection('english')">English (RM110)</button>
+                        <button class="subject-item" onclick="handleSubjectSelection('sains')">Sains (RM110)</button>
+                        <button class="subject-item" onclick="handleSubjectSelection('matematik')">Matematik (RM110)</button>
+                        <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+                    </div>
+                    <button class="subject-item" onclick="handlePackageSelection('all-subject-secondary')">All Subjects (RM260-RM330)</button>
+                </div>
+            </div>
+
+            <!-- Subscribed Tuition -->
+            <div id="subscribed-tuition" class="content">
+                <h2>Subscribed Tuition</h2>
+                <div class="tuition-item">
+                    <h3>Mathematics Premium Plan</h3>
+                    <p><strong>Price Paid:</strong> $50/month</p>
+                </div>
+                <div class="tuition-item">
+                    <h3>Biology Basic Plan</h3>
+                    <p><strong>Price Paid:</strong> $30/month</p>
+                </div>
+                <div class="tuition-item">
+                    <h3>Physics Advanced Plan</h3>
+                    <p><strong>Price Paid:</strong> $70/month</p>
+                </div>
+            </div>
         </div>
     </div>
-    <script src="Student.js" defer></script>
+
+    <script src="student.js"></script>
 </body>
+
 </html>
