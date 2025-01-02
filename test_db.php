@@ -1,5 +1,5 @@
 <?php
-header('Content-Type: application/json'); // Important: Set the correct content type
+header('Content-Type: application/json');
 
 $servername = "localhost";
 $username = "root";
@@ -15,14 +15,19 @@ try {
     $stmt = $conn->query("SELECT id, description, amount FROM unpaid_items");
     $unpaidItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Return the unpaid items as JSON
-    echo json_encode($unpaidItems);
+    // Connection and query successful
+    $response = [
+        'status' => 'success',
+        'message' => 'Connection successful.',
+        'data' => $unpaidItems
+    ];
+    echo json_encode($response);
+
 } catch (PDOException $e) {
     // Set HTTP status code to 500 (Internal Server Error)
     http_response_code(500);
-    // Return a generic error message as JSON
-    echo json_encode(['error' => 'An error occurred while fetching data.']);
-    // Optionally log the actual error message for debugging (not shown to the user)
+    // Return an error message as JSON
+    echo json_encode(['status' => 'error', 'message' => 'An error occurred while fetching data.']);
     error_log($e->getMessage());
 }
 
