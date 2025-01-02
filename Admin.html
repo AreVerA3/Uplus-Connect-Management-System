@@ -3,13 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
+    <title>Admin Dashboard</title>
     <link rel="stylesheet" href="Admin.css">
 </head>
 <body>
-    <div class="header">
-        <span class="home-icon" onclick="location.href='Main Private.html';">&#8592;</span>
-    </div>
     <div class="dashboard">
         <div class="sidebar">
             <div class="profile">
@@ -17,19 +14,199 @@
                 <div class="admin-name">Admin</div>
             </div>
             <nav class="menu">
-                <button class="menu-item" onclick="showMainDisplay('package')">Tuition Package</button>
-                <button class="menu-item" onclick="showMainDisplay('teacher')">Teacher Configuration</button>
-                <button class="menu-item" onclick="showMainDisplay('student')">Student Configuration</button>
-                <button class="menu-item" onclick="showMainDisplay('other')">Other</button>
+                <button class="menu-item" onclick="showMainDisplay('tuition', this)">Tuition Slot Configuration</button>
+                <button class="menu-item" onclick="showMainDisplay('student', this)">Student Data Management</button>
+                <button class="menu-item" onclick="showMainDisplay('teacher', this)">Teacher Data Management</button>
             </nav>
             <div class="sidebar-footer">
-                <button class="main-page" onclick="location.href='Main Private.html';">Main Page</button>
                 <button class="logout" onclick="location.href='Main Page.html';">Logout</button>
             </div>
         </div>
-        <div class="main-display" id="main-display">
-            <!-- Content for each button will be displayed here -->
-        </div>
+        <div class="main-display">
+
+             <!-- Tuition Data Management -->
+            <div id="tuition" class="hidden">
+                <fieldset>
+                    <legend>Configure Tuition Slots</legend> 
+                    <form class="tuition-slot-form" id="tuition-form">
+                        <div class="form-group">
+                            <label for="tuition-subject">Subject:</label>
+                            <select id="tuition-subject" required>
+                                <option value="" disabled selected>Select Subject</option>
+                                <option value="math">Mathematics</option>
+                                <option value="science">Science</option>
+                                <option value="english">English</option>
+                                <option value="history">History</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="time-slot">Time Slot:</label>
+                            <input type="text" id="time-slot" placeholder="Enter time slot in " required>
+                        </div>
+                        <div>
+                            <label for="tuition-teacher">Assign Teacher:</label>
+                            <select id="tuition-teacher" required>
+                                <option value="" disabled selected>Select Teacher</option>
+                                <option value="Ms. Vivian">Ms. Vivian</option>
+                                <option value="Ms. Clarissa">Ms. Clarissa</option>
+                                <option value="Ms. Nabila">Ms. Nabila</option>
+                            </select>
+                        </div>
+                        <div class="form-group button-group">
+                            <button type="button" id="save-tuition-btn" onclick="addOrEditTuition()">Save Tuition</button>
+                            <button type="button" id="cancel-tuition-btn" onclick="resetForm()">Clear</button>
+                        </div>
+                    </form>
+                </fieldset>
+                <h3>Configured Tuition Slots</h3>
+                <table id="tuition-table" class="tuition-table">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Subject</th>
+                            <th>Slot Time</th>
+                            <th>Assigned Teacher</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="5">No tuition slots configured yet.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- end of tuition data management -->
+
+            <!-- student data management -->
+            <div id="student" class="hidden">
+                <fieldset>
+                    <legend>Manage Student</legend>
+                    <form class="student-data-form" id="student-form">
+                        <div class="form-group">
+                            <label for="student-name">Student Name:</label>
+                            <input type="text" id="student-name" placeholder="Enter student name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="student-ic">Identity Card:</label>
+                            <input type="text" id="student-ic" placeholder="Enter student identity card number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="student-email">Email:</label>
+                            <input type="email" id="student-email" placeholder="Enter student email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="student-subject">Subject:</label>
+                            <input type="text" id="student-subject" placeholder="Enter student subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="school-level">School Level:</label>
+                            <select id="school-level" required>
+                                <option value="" disabled selected>Select Grade Level</option>
+                                <option value="high school">High School</option>
+                                <option value="secondary school">Secondary School</option>
+                            </select>
+                        </div>
+                        <div class="form-group button-group">
+                            <button type="button" id="save-student-btn" onclick="addOrEditStudent()">Save Student</button>
+                            <button type="button" id="cancel-student-btn" onclick="resetForm()">Clear</button>
+                        </div>
+                    </form>
+                </fieldset>
+                <h3>Student Data</h3>
+                <table id="student-table" class="student-table">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Student Name</th>
+                            <th>Identity Card</th>
+                            <th>Email</th>
+                            <th>Subject</th>
+                            <th>School Level</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="7">No student data available.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- end of student data management --> 
+
+            <!-- teacher data management -->
+            <div id="teacher" class="hidden">
+                <fieldset>
+                    <legend>Manage Teachers</legend>
+                    <form class="teacher-data-form" id="teacher-form">
+                        <div class="form-group">
+                            <label for="teacher-name">Teacher Name:</label>
+                            <input type="text" id="teacher-name" placeholder="Enter teacher name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject:</label>
+                            <select id="subject" required>
+                                <option value="" disabled selected>Select Subject</option>
+                                <option value="math">Mathematics</option>
+                                <option value="science">Science</option>
+                                <option value="english">English</option>
+                                <option value="history">History</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="level">Grade Level Taught:</label>
+                            <select id="level" required>
+                                <option value="" disabled selected>Select Grade Level</option>
+                                <option value="high school">High School</option>
+                                <option value="secondary school">Secondary School</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="teacher-email">Email:</label>
+                            <input type="email" id="teacher-email" placeholder="Enter teacher email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="teacher-phone">Phone Number:</label>
+                            <input type="tel" id="teacher-phone" placeholder="+6010-1234567" pattern="+601[0-9]{1}-[0-9]{7,8}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="teacher-qualification">Qualification:</label>
+                            <input type="text" id="teacher-qualification" placeholder="Enter teacher qualification" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="teacher-date">Join Date:</label>
+                            <input type="date" id="teacher-date">
+                        </div>
+                        <div class="form-group button-group">
+                            <button type="button" id="save-teacher-btn" onclick="addOrEditTeacher()">Save Teacher</button>
+                            <button type="button" id="cancel-teacher-btn" onclick="resetForm()">Clear</button>
+                        </div>
+                    </form>
+                </fieldset>
+                <h3>Teacher Data</h3>
+                <table id="teacher-table" class="teacher-table">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Teacher Name</th>
+                            <th>Subject</th>
+                            <th>Grade Level Taught</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Qualifications</th>
+                            <th>Joined Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="9">No teacher data available.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
     </div>
     <script src="Admin.js" defer></script>
 </body>
