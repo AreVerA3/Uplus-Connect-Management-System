@@ -176,9 +176,83 @@ function deleteStudent(index, event) { // Add event parameter
     }
 }
 
+// Tuition Management
+let tuitionData = [];
+let editingTuitionIndex = -1;
+const tuitionForm = document.getElementById('tuition-form');
+const tuitionTableBody = document.querySelector("#tuition-table tbody");
+
+function addOrEditTuition() {
+    if (!tuitionForm.reportValidity()) {
+        return;
+    }
+
+    const tuition = {
+        TSubject: document.getElementById("tuition-subject").value,
+        TimeSlot: document.getElementById("time-slot").value,
+        tTeacher: document.getElementById("tuition-teacher").value,
+    };
+
+    if (editingTuitionIndex >= 0) {
+        tuitionData[editingTuitionIndex] = tuition;
+    } else {
+        tuitionData.push(tuition);
+    }
+
+    updateTuitionTable();
+    resetForm();
+}
+
+function updateTuitionTable() {
+    tuitionTableBody.innerHTML = "";
+
+    if (tuitionData.length === 0) {
+        const noDataRow = document.createElement("tr");
+        noDataRow.innerHTML = `<td colspan="5">No Tuition slot data available.</td>`;
+        tuitionTableBody.appendChild(noDataRow);
+        return;
+    }
+
+    tuitionData.forEach((tuition, index) => {
+        const row = tuitionTableBody.insertRow();
+        row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${tuition.TSubject}</td>
+            <td>${tuition.TimeSlot}</td>
+            <td>${tuition.tTeacher}</td>
+            <td>
+                <button onclick="editTuition(${index}, event)">Edit</button>
+                <button onclick="deleteTuition(${index}, event)">Delete</button>
+            </td>
+        `;
+    });
+}
+
+function editTuition(index, event) {
+    event.stopPropagation();
+    const tuition = tuitionData[index];
+
+    document.getElementById("tuition-subject").value = tuition.TSubject;
+    document.getElementById("time-slot").value = tuition.TimeSlot;
+    document.getElementById("tuition-teacher").value = tuition.tTeacher;
+
+    editingTuitionIndex = index;
+}
+
+function deleteTuition(index, event) {
+    event.stopPropagation();
+    if (confirm("Are you sure you want to delete this tuition slot data?")) {
+        tuitionData.splice(index, 1);
+        updateTuitionTable();
+    }
+}//end Tuition Management
+
+
 function resetForm() {
+    tuitionForm.reset();
     teacherForm.reset();
     studentForm.reset(); // Reset student form as well
     editingTeacherIndex = -1;
     editingStudentIndex = -1; // Reset student editing index
+    editingTuitionIndex = -1;
 }
