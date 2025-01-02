@@ -23,24 +23,39 @@
             </div>
         </div>
         <div class="main-display">
+
+             <!-- Tuition Data Management -->
             <div id="tuition" class="hidden">
                 <fieldset>
-                    <legend>Configure Tuition Slots</legend>
-                    <form class="tuition-slot-form">
-                        <div>
-                            <label for="slot-time">Slot Time:</label>
-                            <input type="text" id="slot-time" placeholder="Enter slot time" required>
-                        </div>
-                        <div>
-                            <label for="teacher-assigned">Assign Teacher:</label>
-                            <select id="teacher-assigned" required>
-                                <option value="" disabled selected>Select Teacher</option>
-                                <option value="teacher1">Teacher 1</option>
-                                <option value="teacher2">Teacher 2</option>
+                    <legend>Configure Tuition Slots</legend> 
+                    <form class="tuition-slot-form" id="tuition-form">
+                        <div class="form-group">
+                            <label for="tuition-subject">Subject:</label>
+                            <select id="tuition-subject" required>
+                                <option value="" disabled selected>Select Subject</option>
+                                <option value="math">Mathematics</option>
+                                <option value="science">Science</option>
+                                <option value="english">English</option>
+                                <option value="history">History</option>
                             </select>
                         </div>
-                        <button type="button" onclick="configureTuitionSlot()">Save</button>
-                        <button type="reset">Clear</button>
+                        <div>
+                            <label for="time-slot">Time Slot:</label>
+                            <input type="text" id="time-slot" placeholder="Enter time slot in " required>
+                        </div>
+                        <div>
+                            <label for="tuition-teacher">Assign Teacher:</label>
+                            <select id="tuition-teacher" required>
+                                <option value="" disabled selected>Select Teacher</option>
+                                <option value="Ms. Vivian">Ms. Vivian</option>
+                                <option value="Ms. Clarissa">Ms. Clarissa</option>
+                                <option value="Ms. Nabila">Ms. Nabila</option>
+                            </select>
+                        </div>
+                        <div class="form-group button-group">
+                            <button type="button" id="save-tuition-btn" onclick="addOrEditTuition()">Save Tuition</button>
+                            <button type="button" id="cancel-tuition-btn" onclick="resetForm()">Clear</button>
+                        </div>
                     </form>
                 </fieldset>
                 <h3>Configured Tuition Slots</h3>
@@ -48,18 +63,22 @@
                     <thead>
                         <tr>
                             <th>No.</th>
+                            <th>Subject</th>
                             <th>Slot Time</th>
                             <th>Assigned Teacher</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td colspan="3">No tuition slots configured yet.</td>
+                            <td colspan="5">No tuition slots configured yet.</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+            <!-- end of tuition data management -->
 
+            <!-- student data management -->
             <div id="student" class="hidden">
                 <fieldset>
                     <legend>Manage Student</legend>
@@ -114,7 +133,9 @@
                     </tbody>
                 </table>
             </div>
+            <!-- end of student data management --> 
 
+            <!-- teacher data management -->
             <div id="teacher" class="hidden">
                 <fieldset>
                     <legend>Manage Teachers</legend>
