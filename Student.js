@@ -1,39 +1,31 @@
-function showMainDisplay(section, element) {
-    const mainDisplay = document.getElementById('main-display');
-    let content = '';
+// Function to show the selected content and set active button
+function showContent(contentId) {
+    // Hide all content
+    const contents = document.querySelectorAll('.content');
+    contents.forEach(content => content.classList.remove('active'));
 
-    switch (section) {
-        case 'subscribedtuition':
-            content = `
-                <h2>Subscribed Tuition</h2>
-                <p>Subscribed tuition by the students</p>
-                <!-- Add more content as needed -->
-            `;
-            break;
-        case 'payment':
-            content = `
-                <h2>Payment</h2>
-                <p>Same contain with cart button contain </p>
-                <!-- Add more content as needed -->
-            `;
-            break;
-        case 'learningmaterial':
-            content = `
-                <h2>Learning Materials</h2>
-                <p>All learning material needed by student is shown here</p>
-                <!-- Add more content as needed -->
-            `;
-            break;
-        default:
-            content = '<p>Select an option from the menu.</p>';
-    }
+    // Remove active class from all buttons
+    const buttons = document.querySelectorAll('.menu-item');
+    buttons.forEach(button => button.classList.remove('active'));
 
-    mainDisplay.innerHTML = content;
+    // Show selected content and highlight the button
+    document.getElementById(contentId).classList.add('active');
+    const button = Array.from(buttons).find(btn => btn.textContent.includes(contentId.replace('-', ' ')));
+    if (button) button.classList.add('active');
+}
 
-    // Remove active class from all menu items
-    const menuItems = document.querySelectorAll('.menu-item');
-    menuItems.forEach(item => item.classList.remove('active'));
+// Function to handle package selection (Primary and Secondary)
+function handlePackageSelection(packageType) {
+    const menu = document.getElementById(packageType);
+    menu.classList.toggle('active');
+}
 
-    // Add active class to the clicked menu item
-    element.classList.add('active');
+// Function to handle subject selection and adding to cart
+function handleSubjectSelection(subjectElement) {
+    subjectElement.classList.toggle('selected-subject');
+}
+
+// Function to add selected subjects to cart
+function addToCart() {
+    alert("Subjects added to cart!");
 }
