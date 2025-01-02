@@ -1,36 +1,19 @@
 <?php
-header('Content-Type: application/json');
+// Database configuration
+$servername = "localhost"; // Usually localhost
+$username = "root"; // Default username for XAMPP
+$password = ""; // Default password is empty for XAMPP
+$dbname = "student_db"; // Replace with your database name
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "test_db";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-try {
-    // Create a new PDO instance
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    // Prepare and execute the query
-    $stmt = $conn->query("SELECT id, description, amount FROM unpaid_items");
-    $unpaidItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    // Connection and query successful
-    $response = [
-        'status' => 'success',
-        'message' => 'Connection successful.',
-        'data' => $unpaidItems
-    ];
-    echo json_encode($response);
-
-} catch (PDOException $e) {
-    // Set HTTP status code to 500 (Internal Server Error)
-    http_response_code(500);
-    // Return an error message as JSON
-    echo json_encode(['status' => 'error', 'message' => 'An error occurred while fetching data.']);
-    error_log($e->getMessage());
-}
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+echo "Connected successfully";
 
 // Close the connection
-$conn = null;
+$conn->close();
 ?>
