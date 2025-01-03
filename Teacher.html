@@ -19,6 +19,7 @@
                 <button class="menu-item" onclick="showMainDisplay('material', this)">Learning Material</button>
             </nav>
             <div class="sidebar-footer">
+                <button class="logout" onclick="location.href='Main Private.html';">Main Page</button>
                 <button class="logout" onclick="location.href='Main Page.html';">Logout</button>
             </div>
         </div>
@@ -26,7 +27,7 @@
             <div id="announcements" class="hidden">
                 <fieldset>
                 <legend>Post Homework Announcement</legend>
-                <form class="announcement-form">
+                <form class="announcement-form" action="announcement.php" method="post">
                     <div>
                         <label for="homework-title">Homework Title:</label>
                         <input type="text" id="homework-title" placeholder="Enter homework title" required> 
@@ -46,37 +47,19 @@
                     <button type="reset">Clear</button>
                 </form>
                 </fieldset>
-
-                <h3>Posted Announcements</h3>
-                <table id="announcements-table" class="announcements-table">
-                    <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>Title</th>
-                            <th>Posted Date</th>
-                            <th>Deadline</th>
-                            <th>Elaboration</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="5">No announcements yet.</td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
 
             <div id="students" class="hidden">
                 <fieldset>
                 <legend>Upload Grades & Attendance</legend>
-                <form class="student-data-form">
+                <form class="student-data-form" action="upload_student_data.php" method="post">
                     <div>
                         <label for="student-name">Student Name :</label>
                         <input type="text" id="student-name" placeholder="Enter student name" required>
                     </div>
                     <div>
-                        <label for="education">School Level :</label>
-                        <select id="education" required>
+                        <label for="school-level">School Level :</label>
+                        <select id="school_level" required>
                             <option value="" disabled selected>Select School Level</option>
                             <option value="sjkc">SJKC</option>
                             <option value="sk">SK</option>
@@ -84,8 +67,8 @@
                         </select>
                     </div>
                     <div>
-                        <label for="subject">Subject:</label>
-                        <select id="subject" required>
+                        <label for="subjects">Subject:</label>
+                        <select id="subjects" required>
                             <option value="" disabled selected>Select Subject</option>
                             <option value="math">Mathematics</option>
                             <option value="science">Science</option>
@@ -139,16 +122,16 @@
             <div id="material" class="hidden">
                 <fieldset>
                     <legend>Upload Learning Material</legend>
-                    <form class="material-upload-form" enctype="multipart/form-data">
+                    <form class="material-upload-form" action="TeacherLogic.php" method="post" enctype="multipart/form-data">
                         <div>
                             <label for="material-title">Title:</label>
                             <input type="text" id="material-title" placeholder="Enter material title" required>
                         </div>
 
-                        <div>
+                        <!--<div>
                             <label for="material-file">Upload File (Image/PDF):</label>
                             <input type="file" id="material-file" accept="image/*,application/pdf" required>
-                        </div>
+                        </div>-->
 
                         <div>
                             <label for="education">School Level:</label>
