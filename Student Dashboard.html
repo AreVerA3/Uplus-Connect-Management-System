@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <div class="user-info">
+        <div class="user-icon"></div>
+        <p>Student</p>
+      </div>
+      <ul>
+        <li><button id="learning-materials-btn">Learning Materials</button></li>
+        <li><button id="payment-btn" class="active">Payment</button></li>
+        <li><button id="subscribed-tuition-btn">Subscribed Tuition</button></li>
+      </ul>
+      <ul>
+        <li><button id="main-page-btn">Main Page</button></li>
+        <li><button id="logout-btn">Logout</button></li>
+      </ul>
+    </div>
+    <div class="main-content">
+      <h1 id="page-title">Payment</h1>
+      <div class="unpaid-items">
+        <h2>Unpaid Items</h2>
+        <table id="paymentTable">
+          <thead>
+            <tr>
+              <th>Select</th>
+              <th>Month Fee</th>
+              <th>Description</th>
+              <th>Due Payment</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+        <p>Total Amount: <span id="totalAmount">RM 0.00</span></p>
+        <button id="payButton" disabled>Pay</button>
+      </div>
+      <div class="payment-method">
+        <h2>Payment Method</h2>
+        <div>
+          <input type="radio" id="bankTransfer" name="paymentMethod" value="Bank Transfer" checked>
+          <label for="bankTransfer">Bank Transfer</label>
+        </div>
+        <form id="paymentForm">
+          <div>
+            <label for="bankAccount">Bank Account Number:</label>
+            <input type="text" id="bankAccount" required>
+          </div>
+          <div>
+            <label for="accountHolder">Account Holder:</label>
+            <input type="text" id="accountHolder" required>
+          </div>
+          <div>
+            <label for="bankName">Bank Name:</label>
+            <select id="bankName" required>
+              <option value="Maybank">Maybank</option>
+              <option value="Public Bank">Public Bank</option>
+              <option value="AmBank">AmBank</option>
+              <option value="BSN">BSN</option>
+              <option value="Bank Islam">Bank Islam</option>
+              <option value="Hong Leong Bank">Hong Leong Bank</option>
+              <option value="CIMB Bank">CIMB Bank</option>
+              <option value="RHB Bank">RHB Bank</option>
+            </select>
+          </div>
+          <div>
+            <label for="receiptUpload">Upload Receipt:</label>
+            <input type="file" id="receiptUpload" accept="image/*" required>
+          </div>
+          <button type="submit">Checkout</button>
+        </form>
+      </div>
+      <div id="payment_history">
+        <h2>Payment History</h2>
+        <table id="payment_history">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Payment Method</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <script src="Student Dashboard.js"></script>
+</body>
+</html>
+```
