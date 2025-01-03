@@ -13,7 +13,7 @@
 
     <div class="login-container">
         <h2>Log In</h2>
-        <form>
+        <form method="post" action="con_login.php">
             <div class="input-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" required pattern="[a-zA-Z0-9]+">
@@ -23,9 +23,7 @@
                 <input type="password" id="password" name="password" required>
             </div>
             <button type="submit" class="login-button">Log In</button>
-            <button onclick="location.href='Admin.html';">Admin</button>
-            <button onclick="location.href='Student.html';">Student</button>
-            <button onclick="location.href='Teacher.html';">Teacher</button>
+
         </form>
     </div>
 
