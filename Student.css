@@ -2,14 +2,13 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #F9FAFB;
+    background-color: #f4f4f4; /* Subtle background for better contrast */
 }
 
-/* Dashboard layout */
+/* Dashboard container */
 .dashboard {
     display: flex;
     height: 100vh;
-    flex-wrap: nowrap;
 }
 
 /* Sidebar styles */
@@ -21,9 +20,10 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    justify-content: space-between;
+    position: relative;
 }
 
+/* Profile section */
 .profile {
     display: flex;
     flex-direction: column;
@@ -44,6 +44,7 @@ body {
     font-weight: bold;
 }
 
+/* Menu styles */
 .menu {
     width: 100%;
     margin-bottom: auto;
@@ -51,7 +52,7 @@ body {
 
 .menu-item {
     width: 100%;
-    padding: 10px;
+    padding: 12px; /* Increased padding */
     margin: 5px 0;
     color: white;
     text-align: left;
@@ -59,115 +60,217 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth hover effect */
 }
 
 .menu-item:hover {
     background-color: #2563EB;
 }
 
-.menu-item.active {
-    background-color: purple;
+.menu-item.active { /* Style for the active menu item */
+    background-color: #1D4ED8; /* A darker shade for active state */
 }
 
+/* Sidebar footer with buttons */
 .sidebar-footer {
-    margin-top: auto;
     width: 100%;
+    margin-top: auto;
+    padding: 10px 0;
+    text-align: center;
 }
 
-.sidebar-footer button {
+.main-page,
+.logout {
+    width: 100%;
     padding: 10px;
     margin: 5px 0;
-    width: 100%;
-    background-color: #036dd8;
-    color: white;
+    background-color: #4447ef;
     border: none;
+    color: white;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.main-page:hover {
+    background-color: #046e3d;
+}
+
+.logout:hover {
+    background-color: #DC2626;
 }
 
 /* Main display area */
 .main-display {
     flex-grow: 1;
+    background-color: #F9FAFB;
     padding: 20px;
-    overflow-y: auto;
+    overflow-y: auto; /* Vertical scroll if content overflows */
 }
 
-/* Content visibility */
+/* Content area general styles */
 .content {
     display: none;
+    padding: 20px; /* Added padding to content areas */
+    border-radius: 8px; /* Slightly rounded content corners */
+    background-color: white; /* Content background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    margin-bottom: 20px; /* Spacing between content sections*/
 }
 
 .content.active {
     display: block;
 }
 
-/* Package selection styles */
-.package-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
+/* Learning Materials */
+.material-item {
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    justify-content: space-between; /* Key: Distribute space between content */
+}
+
+.material-logo {
+    max-width: 120px;
+    max-height: 120px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    margin-left: 20px; /* Space between text and image */
+}
+
+.material-info {
+    flex-grow: 1; /* Allow text to take up available space */
+}
+
+.material-info h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.material-info p {
+    font-style: italic;
+    color: #555;
+    margin: 0;
+}
+
+/* Cart Button */
+.cart-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #007BFF;
     color: white;
     border: none;
-    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
     cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    display: none; 
+}
+
+.cart-button:hover {
+    background-color: #0056b3;
+}
+
+/* Package buttons styling */
+.package-btn {
+    padding: 10px 20px;
+    margin: 10px 5px; /* Adjusted margin */
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.package-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Subject list styling */
+.subject-list {
     margin: 10px 0;
-}
-
-.package-button:hover {
-    background-color: #45a049;
-}
-
-/* Scroll down menu styles */
-.scroll-menu {
-    margin-top: 20px;
-    display: none;
-}
-
-.scroll-menu.active {
-    display: block;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
 .subject-item {
-    padding: 8px;
-    background-color: #f1f1f1;
-    border-radius: 5px;
-    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px; /* Increased padding */
+    margin-bottom: 5px; /* Added spacing between items */
+    border-bottom: 1px solid #eee; /* Added subtle separator */
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
-.subject-item:hover {
-    background-color: #ddd;
+.subject-item:last-child {
+    border-bottom: none; /* Remove border from the last item */
 }
 
-.selected-subject {
-    background-color: green;
-    color: white;
+.subject-item.selected {
+    background-color: #d4edda;
 }
 
-.add-to-cart {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #4CAF50;
+/* Add to cart button styling */
+.add-cart-btn {
+    background-color: #28a745;
     color: white;
     border: none;
-    border-radius: 5px;
+    padding: 8px 12px; /* Adjusted padding */
     cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
-.add-to-cart:hover {
-    background-color: #45a049;
+.add-cart-btn:hover {
+    background-color: #218838;
 }
 
-/* Responsive for mobile */
-@media (max-width: 768px) {
-    .dashboard {
-        flex-direction: column;
-    }
-    .sidebar {
-        width: 100%;
-        height: auto;
-    }
-    .main-display {
-        padding: 10px;
-    }
+.all-subjects-option {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.all-subjects-btn {
+    margin-right: 10px;
+}
+
+.options-container {
+    padding-top: 20px;
+}
+
+/* ... (Existing CSS styles) */
+
+/* Cart Content */
+#cart-content {
+    display: none;
+    position: absolute;
+    top: 60px; /* Adjust as needed */
+    right: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Ensure it's on top */
+    border-radius: 5px;
+}
+
+#cart-content ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#cart-content li {
+    margin-bottom: 5px;
 }
