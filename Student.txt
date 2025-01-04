@@ -8,19 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-function loadCartFromLocalStorage() {
-    try {
-        const storedCart = localStorage.getItem('cartItems');
-        if (storedCart) {
-            cartItems = JSON.parse(storedCart);
-        }
-    } catch (error) {
-        console.error("Error loading cart from local storage:", error);
-        localStorage.removeItem('cartItems'); // Clear corrupted data
-    }
-    updateCartDisplay(); // Update display after loading
-}
-
 function showContent(section) {
     const allSections = document.querySelectorAll('.content');
     allSections.forEach(content => content.classList.remove('active'));
@@ -111,49 +98,22 @@ function toggleSubjectSelection(item) {
     item.classList.toggle('selected');
 }
 
-
 function addToCart(event, subjectName, subjectPrice) {
     event.stopPropagation();
-
-    fetch('Cart.php', { 
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `action=addToCart&subjectName=${encodeURIComponent(subjectName)}&subjectPrice=${subjectPrice}`
-    })
-    .then(response => response.text())
-    .then(data => {
-        console.log(data); // "Item added to cart"
-        getCartItems(); // Refresh cart display after adding
-        alert(`"${subjectName}" added to cart successfully!`);
-    });
+    cartItems.push({ name: subjectName, price: subjectPrice });
+    updateCartDisplay();
+    alert(`"${subjectName}" added to cart successfully!`);
 }
-
 
 function addAllSubjectsToCart(event, subjects) {
     event.stopPropagation();
-    subjects.forEach(subject => {
-        fetch('your_server_script.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: `action=addToCart&subjectName=${encodeURIComponent(subject.name)}&subjectPrice=${subject.price}`
-        })
-        .then(response => response.text())
-        .then(data => {
-            console.log(data);
-            getCartItems();// Refresh cart display after adding
-        });
-    });
+    cartItems.push(...subjects); // Use spread syntax for cleaner addition
+    updateCartDisplay();
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
 }
-
 
 function updateCartDisplay() {
     const cartContent = document.getElementById('cart-content');
-    if (!cartContent) return; // Guard clause
-
     cartContent.innerHTML = '';
 
     if (cartItems.length === 0) {
@@ -166,10 +126,8 @@ function updateCartDisplay() {
 }
 
 function viewCart() {
-    getCartItems();
     updateCartDisplay();
     const cartContent = document.getElementById('cart-content');
-    if (!cartContent) return;
 
     if (cartItems.length > 0) {
         cartContent.style.display = 'block';
@@ -180,41 +138,15 @@ function viewCart() {
             proceedButton.id = 'proceed-to-payment';
             proceedButton.textContent = 'Proceed to Payment';
             proceedButton.classList.add('cart-button');
-            proceedButton.style.marginTop = '10px';
+            proceedButton.style.marginTop = '10px'; // Keep consistent styling
             cartContent.appendChild(proceedButton);
-
-            proceedButton.addEventListener('click', () => {
-                saveCartToLocalStorage(); // Save when proceeding to payment
-                window.location.href = "payment.html"; // Redirect to payment page
-            });
         }
+
+        proceedButton.addEventListener('click', () => {
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        });
     } else {
         alert('Your cart is empty.');
-        cartContent.style.display = 'none';
-    }
-}
-
-function getCartItems() {
-    fetch('Cart.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: 'action=getCartItems'
-    })
-    .then(response => response.json())
-    .then(data => {
-        cartItems = data; // Update the cartItems array
-        updateCartDisplay(); // Update the cart display
-    });
-}
-
-function saveCartToLocalStorage() {
-    try {
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        console.log("Cart saved to local storage:", cartItems);
-    } catch (error) {
-        console.error("Error saving cart to local storage:", error);
-        alert("Error saving cart. Please try again."); // User-friendly message
+        cartContent.style.display = 'none'; // Hide if cart is empty
     }
 }

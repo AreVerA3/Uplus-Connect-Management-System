@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard</title>
-    <link rel="stylesheet" href="Student.css">
+    <link rel="stylesheet" href="student.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -17,86 +17,55 @@
                 <div class="student-name">Student</div>
             </div>
             <nav class="menu">
-                <button id="learningmaterial" class="menu-item" onclick="showMainDisplay('learningmaterial', this)">Learning Materials</button>
-                <button id="payment" class="menu-item" onclick="showMainDisplay('payment', this)">Payment</button>
-                <button id="subscribedtuition" class="menu-item" onclick="showMainDisplay('subscribedtuition', this)">Subscribed Tuition</button>
+                <button class="menu-item active" onclick="showContent('learning-materials')">Learning Materials</button>
+                <button class="menu-item" onclick="showContent('subjects')">Subjects & Payment</button>
+                <button class="menu-item" onclick="showContent('subscribed-tuition')">Subscribed Tuition</button>
             </nav>
             <div class="sidebar-footer">
                 <button class="main-page" onclick="location.href='Main Private.html';">Main Page</button>
                 <button class="logout" onclick="location.href='Main Page.html';">Logout</button>
             </div>
         </div>
-        <div class="main-display" id="main-display">
-            <div id="learningmaterial">
-                <fieldset>
-                    <legend>Learning Materials</legend>
-                    <table id="materials-table" class="materials-table">
-                        <thead>
-                            <tr>
-                                <th>No.</th>
-                                <th>Title</th>
-                                <th>School Level</th>
-                                <th>Subject</th>
-                                <th>File</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            </tbody>
-                    </table>
-                </fieldset>
+
+        <div class="main-display">
+            <button id="cart-button" class="cart-button" onclick="location.href='payment.html';">Cart</button>
+            
+            <div id="cart-content"></div> <div id="learning-materials" class="content active">
+                <h2>Learning Materials</h2>
+                <div class="material-item">
+                    <div class="material-info">
+                        <h3>Mathematics</h3>
+                        <p>Mr. John Doe</p>
+                    </div>
+                    <img src="math_logo.png" alt="Math Logo" class="material-logo">
+                </div>
+                <div class="material-item">
+                    <div class="material-info">
+                        <h3>Chemistry</h3>
+                        <p>Dr. Jane Smith</p>
+                    </div>
+                    <img src="chemistry_logo.png" alt="Chemistry Logo" class="material-logo">
+                </div>
             </div>
 
-            <div id="payment" class="hidden">
-                <div class="payment-container">
-                    <h2>Payment</h2>
-                    <div class="unpaid-items">
-                        <h3>Unpaid Items</h3>
-                        <form id="paymentForm" action="process_payment.php" method="post">
-                            <table class="unpaid-items-table">
-                                <thead>
-                                    <tr>
-                                        <th>Select</th>
-                                        <th>Description</th>
-                                        <th>Amount</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr><td colspan="3">Payment functionality requires database connection.</td></tr>
-                                </tbody>
-                            </table>
-                            <div class="total-amount">
-                                Total Amount: $<span id="totalAmount">0.00</span>
-                            </div>
-                            <input type="submit" value="Pay">
-                        </form>
-                    </div>
-                    <div class="payment-methods">
-                        <h3>Payment Method</h3>
-                        <div class="method-options">
-                            <label class="method-option">
-                                <input type="radio" name="payment-method" value="bank-transfer" id="bankTransferRadio">
-                                <i class="fa fa-bank"></i> Bank Transfer
-                            </label>
-                            <div id="bankInfoPopup" style="display: none;">
-                                <div class="popup-content">
-                                    <span class="close" id="bankInfoClose">&times;</span>
-                                    <h2>Bank Account Information</h2>
-                                    <label for="accountNumber">Bank Account Number:</label>
-                                    <input type="text" id="accountNumber" name="accountNumber" placeholder="Enter your bank account number" form="paymentForm">
-                                    <label for="accountHolder">Account Holder Name:</label>
-                                    <input type="text" id="accountHolder" name="accountHolder" placeholder="Enter your account holder name" form="paymentForm">
-                                    <input type="submit" class="pay-button" value="Pay" form="paymentForm">
-                                </div>
-                            </div>
-                            <button id="payment-history">Payment History</button>
-                        </div>
-                    </div>
+            <div id="subjects" class="content">
+                <h2>Select Your Package</h2>
+                <button class="package-btn" onclick="handlePackageSelection('primary')">Primary School Package</button>
+                <button class="package-btn" onclick="handlePackageSelection('secondary')">Secondary School Package</button>
+                <div id="package-options" class="options-container"></div>
+            </div>
+
+            <div id="subscribed-tuition" class="content">
+                <h2>Subscribed Tuition</h2>
+                <div class="tuition-item">
+                    <h3>Mathematics Premium Plan</h3>
+                    <p><strong>Price Paid:</strong> $50/month</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="Student.js"></script>
+    <script src="student.js"></script>
 </body>
 
 </html>

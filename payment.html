@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Form</title>
+    <link rel="stylesheet" href="payment.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Payment Form</h2>
+
+        <div class="cart-summary">
+            <h3>Cart Summary</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Price (RM)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>English (Form 5)</td>
+                        <td id="english-price">110.00</td>
+                    </tr>
+                    <tr>
+                        <td>Math (Form 5)</td>
+                        <td id="math-price">110.00</td>
+                    </tr>
+                    <tr>
+                        <td>Total:</td>
+                        <td id="cart-total">220.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="payment-details">
+            <h3>Payment Details</h3>
+
+            <label for="bank-dropdown">Choose Your Bank:</label>
+            <select id="bank-dropdown">
+                <option value="Maybank">Maybank</option>
+                <option value="Public Bank">Public Bank</option>
+                <option value="CIMB Bank">CIMB Bank</option>
+                <option value="Bank Simpanan Nasional (BSN)"></option>
+            </select>
+
+            <label for="account-number">Account Number:</label>
+            <input type="text" id="account-number" placeholder="Enter Account Number">
+
+            <label for="recipient-bank">Recipient Bank:</label>
+            <input type="text" id="recipient-bank" value="Public Bank" readonly>
+
+            <label for="recipient-account">Recipient Account Number:</label>
+            <input type="text" id="recipient-account" value="3228457630" readonly>
+
+            <label for="amount">Amount (RM):</label>
+            <input type="text" id="amount" value="220.00" readonly>
+
+            <button id="submit-button"> Proceed to Payment>> </button>
+        </div>
+    </div>
+
+    <script src="payment.js"></script>
+</body>
+
+</html>
