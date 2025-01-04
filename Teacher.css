@@ -107,13 +107,6 @@ body {
     border-radius: 0;
 }
 
-.teacher-data-form input,
-.teacher-data-form select,
-.teacher-table,
-table { /* Apply to all tables */
-    box-sizing: border-box;
-}
-
 /* Announcements Section */
 .announcement-form {
     display: flex;

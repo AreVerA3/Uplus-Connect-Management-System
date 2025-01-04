@@ -10,20 +10,96 @@
     <div class="dashboard">
         <div class="sidebar">
             <div class="profile">
-                <img src="path/to/profile-picture.jpg" alt="Profile Picture" class="profile-picture">
-                <div class="teacher-name">Teacher Name</div>
+                <div class="profile-picture"></div>
+                <div class="teacher-name">Teacher</div>
             </div>
             <nav class="menu">
-                <button class="menu-item" onclick="showContent('learning-material')">Learning Material</button>
-                <button class="menu-item" onclick="showContent('student-data')">Student Data Management</button>
+                <button class="menu-item" onclick="showMainDisplay('announcements', this)">Homework Announcements</button>
+                <button class="menu-item" onclick="showMainDisplay('students', this)">Student Data Management</button>
             </nav>
             <div class="sidebar-footer">
-                <button class="main-page" onclick="location.href='Main Private.html';">Main Page</button>
+                <button class="logout" onclick="location.href='Main Private.html';">Main Page</button>
                 <button class="logout" onclick="location.href='Main Page.html';">Logout</button>
             </div>
         </div>
-        <div class="main-display" id="main-display">
-            <!-- Main content will be displayed here -->
+        <div class="main-display">
+            <div id="announcements" class="hidden">
+                <fieldset>
+                <legend>Post Homework Announcement</legend>
+                <form class="announcement-form" action="announcement.php" method="post">
+                    <div>
+                        <label for="homework-title">Homework Title:</label>
+                        <input type="text" id="homework-title" placeholder="Enter homework title" required> 
+                    </div>
+
+                    <div>
+                        <label for="homework-deadline">Deadline:</label>
+                        <input type="date" id="homework-deadline" required>
+                    </div>
+                    
+                    <div>
+                        <label for="homework-elaboration">Elaboration:</label>
+                        <textarea id="homework-elaboration" rows="10" placeholder="Provide detailed information about the homework" required></textarea>
+                    </div>
+                    
+                    <button type="button" onclick="postAnnouncement()">Post Announcement</button>
+                    <button type="reset">Clear</button>
+                </form>
+                </fieldset>
+                
+            </div>
+
+            <div id="students" class="hidden">
+                <fieldset>
+                <legend>Upload Grades & Attendance</legend>
+                <form class="student-data-form" action="upload_student_data.php" method="post">
+                    <div>
+                        <label for="student-name">Student Name :</label>
+                        <input type="text" id="student-name" placeholder="Enter student name" required>
+                    </div>
+                    <div>
+                        <label for="school-level">School Level :</label>
+                        <select id="school_level" required>
+                            <option value="" disabled selected>Select School Level</option>
+                            <option value="sjkc">SJKC</option>
+                            <option value="sk">SK</option>
+                            <option value="secondary">Secondary</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="subjects">Subject:</label>
+                        <select id="subjects" required>
+                            <option value="" disabled selected>Select Subject</option>
+                            <option value="math">Mathematics</option>
+                            <option value="science">Science</option>
+                            <option value="english">English</option>
+                            <option value="history">History</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="grade">Grade:</label>
+                        <select id="grade" required>
+                            <option value="" disabled selected>Select Grade</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            <option value="FAILED">FAILED</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="attendance">Attendance:</label>
+                        <input type="text" id="attendance" placeholder="Enter Percentage of Attendance" required>
+                    </div>
+
+                    <button type="button" onclick="uploadStudentData()">Save</button>
+                    <button type="reset">Clear</button>
+                </form>
+                </fieldset>
+            </div>
         </div>
     </div>
     <script src="Teacher.js" defer></script>
